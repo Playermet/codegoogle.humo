@@ -1,4 +1,4 @@
-A production could contains other productions definitions inside it, and when some part of the code make use of this, its definitions are pasted too.
+A production could contains other production definitions inside it, when some part of the code make use of this, its definitions are pasted too.
 
 ====These definitions:====
 <code language="js">
