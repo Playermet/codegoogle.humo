@@ -2,13 +2,15 @@
 
 = Language operations =
 
-===Defining a production===
+There are only two operations in Humo language.
+
+ *===Production definition===
 <code language="js">
 p1{v1}
 </code>
 Defines a production p1 with value v1
 
-===Using a production===
+ *===Production usage===
 <code language="js">
    result{p1}
 </code>
