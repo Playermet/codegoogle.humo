@@ -1,25 +1,23 @@
 #summary Humo syntaxis
 
-= Basic operations =
+= Language operations =
 
-def1
+===Defining a production===
+<code language="js">
+p1{v1}
+</code>
+Defines a production p1 with value v1
 
-{
-  def11
-  {
-  }
+===Using a production===
+<code language="js">
+   result{p1}
+</code>
 
-  def12
-  {
-  }
-}
-
-Add your content here.
+When producton p1 is found it's replaced by its value v1.
+<code language="js">
+   result{v1}
+</code>
 
 
-= Details =
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+MoreDetails
