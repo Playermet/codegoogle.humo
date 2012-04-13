@@ -1,27 +1,25 @@
+A production could contains other productions definitions inside it, and when some part of the code make use of this, its definitions are pasted too.
 
+====These definitions:====
 <code language="js">
-a{v1} b{v2}
-</code>
-
-
-<code language="js">
-def1
+p1
 {
-  def11
-  {
-  }
-  def12
-  {
-  }
+ p2{v2}
+}
+ 
+result
+{
+ p1
 }
 </code>
-
-Add your content here.
-
-
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+====Create this result:====
+<code language="js">
+p1
+{
+ p2{v2}
+}
+result
+{
+ p2{v2}
+}
+</code>
