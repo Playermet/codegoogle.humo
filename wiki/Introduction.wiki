@@ -1,4 +1,4 @@
-#summary Humo syntax
+#summary Humo syntaxis
 
 = Language operations =
 
@@ -7,29 +7,50 @@ There are only two operations in Humo language:
  # Production usage
 
  *===Production definition===
+
+----
+Defining a production p1 with value v1
 <code language="js">
 p1{v1}
 </code>
-Defines a production p1 with value v1
+----
 
+Production values may contain other productions definitions inside.
+
+Defining a production p2 whose content is a definition of other production p3 with value v3.
 <code language="js">
 p2{p3{v3}}
 </code>
-Defines a production p2 whose content is a definition of other production p3 with value v3.
+----
 
 
  *===Production usage===
+----
+When production p1 is found it's replaced by its value v1.
+
+Before execution:
 <code language="js">
    p1{v1}
    result{p1}
 </code>
-
-When producton p1 is found it's replaced by its value v1.
+After execution:
 <code language="js">
    p1{v1}
    result{v1}
 </code>
+----
 
+When production p2 is found it's replaced by its value that is another definition.
 
-
+Before execution:
+<code language="js">
+   p2{p3{v3}}
+   result{p2}
+</code>
+After execution:
+<code language="js">
+   p2{p3{v3}}
+   result{p3{v3}}
+</code>
+----
 MoreDetails
