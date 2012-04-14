@@ -4,7 +4,7 @@
 
 There are only two operations in Humo language:
  # Production definition
- # Production usage
+ # Production substitution 
 
  *===Production definition===
 
@@ -24,7 +24,7 @@ p2{p3{v3}}
 ----
 
 
- *===Production usage===
+ *===Production substitution===
 ----
 When production p1 is found it's replaced by its value v1.
 
