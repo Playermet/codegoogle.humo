@@ -1,4 +1,4 @@
-#summary Humo syntaxis
+#summary Humo syntax
 
 = Language operations =
 
