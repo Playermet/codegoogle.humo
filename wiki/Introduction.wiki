@@ -15,7 +15,7 @@ p1{v1}
 </code>
 ----
 
-Production values may contain other productions definitions inside.
+Production values may contain other production definitions inside.
 
 Defining a production p2 whose content is a definition of other production p3 with value v3.
 <code language="js">
