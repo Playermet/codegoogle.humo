@@ -3,8 +3,8 @@
 = Language operations =
 
 There are only two operations in Humo language:
- #Production definition
- #Production usage
+ # Production definition
+ # Production usage
 
  *===Production definition===
 <code language="js">
