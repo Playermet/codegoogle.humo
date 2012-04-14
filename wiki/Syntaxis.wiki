@@ -12,6 +12,12 @@ p1{v1}
 </code>
 Defines a production p1 with value v1
 
+<code language="js">
+p2{p3{v3}}
+</code>
+Defines a production p2 whose content is a definition of other production p3 with value v3.
+
+
  *===Production usage===
 <code language="js">
    p1{v1}
