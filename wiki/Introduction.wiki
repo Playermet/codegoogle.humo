@@ -50,7 +50,7 @@ Before execution:
 After execution:
 <code language="js">
    p2{p3{v3}}
-   result{p3{v3}}
+   result{v3{v3}}
 </code>
 ----
 MoreDetails
