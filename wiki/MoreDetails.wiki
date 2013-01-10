@@ -12,7 +12,7 @@ result
  p1
 }
 </code>
-====Create this result:====
+====Generates this result:====
 <code language="js">
 p1
 {
