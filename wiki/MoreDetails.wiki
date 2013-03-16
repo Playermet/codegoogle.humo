@@ -25,7 +25,7 @@ result
 </code>
 
 
-
+====Example 1: complete program with byte, nibble and vector definition, addition and multiplication :====
 <code>
 programa
 {
@@ -179,7 +179,7 @@ programa
 				<****>decr::valor {<*>nibble::nombre.getValor}
 				[temp]{<***>math.decr}
 				[temp]borra_getValor{<**>del=>(%nibble::nombre.getValor)}
-				<*>nibble::nombre.getValor {%resultado}
+				<*>nibble::nombre.getValor {<***>resultado}
 				[temp]borra_resultado{<***>del->(%resultado)}
 			} 
 			[temp]borra_getValor {<*>del=>(%nibble::nombre.getValor)}
@@ -189,7 +189,7 @@ programa
 				<****>incr::valor {<*>nibble::nombre.getValor}
 				[temp]{<***>math.incr}
 				[temp]borra_getValor{<**>del=>(%nibble::nombre.getValor)}
-				<*>nibble::nombre.getValor {%resultado}
+				<*>nibble::nombre.getValor {<***>resultado}
 				[temp]borra_resultado{<***>del->(%resultado)}
 			} 
 			[temp]borra_getValor {<*>del=>(%nibble::nombre.getValor)}
@@ -259,13 +259,13 @@ programa
 
 		<*>suma.while.guarda
 		{
-			<**>guarda_temp1{<**>suma.contador.getValor.incr.esCero.not}
-			<**>guarda_temp2{<*>guarda_temp1}<**>guarda_temp3{<*>guarda_temp2}<**>guarda_temp4{<*>guarda_temp3}
+			<**>guarda_temp1	{<**>suma.contador.getValor.incr.esCero.not}
+			<**>guarda_temp2	{<*>guarda_temp1}<**>guarda_temp3{<*>guarda_temp2}<**>guarda_temp4{<*>guarda_temp3}
 			<**>suma.while.valorGuarda {<*>guarda_temp4}
 		}
 	
-		[rem]creo_contador {<**>nibble::nombre {%suma.contador} <**>nuevo nibble}
-		[rem]seteo_contador {<**>nibble::numero {%suma::digitos} %suma.contador.setValor}
+		[rem]creo_contador 	{<**>nibble::nombre {%suma.contador} <**>nuevo nibble}
+		[rem]seteo_contador 	{<**>nibble::numero {%suma::digitos} %suma.contador.setValor}
 
 		<**>ultimo_acarreo {0}
 
@@ -283,6 +283,21 @@ programa
 
 	<clase> byte
 	{
+		[temp]defino_dels
+		{
+			<**>del::head{%byte:} <**>del::tail{:nuevo_valor} 			[temp]{<**>nuevo del}
+			<**>del::head{%byte:} <**>del::tail{:sumar::byte} 			[temp]{<**>nuevo del}
+			<**>del::head{<*>nibble::nombre} <**>del::tail{.inc} 			[temp]{<**>nuevo del}
+			<**>del::head{<*>nibble::nombre} <**>del::tail{.esCero} 		[temp]{<**>nuevo del}
+			<**>del::head{%nibble:} 			<**>del::tail{:numero} 		[temp]{<**>nuevo del}
+		}
+		
+		[temp]borro_parametros
+		{
+			<*>del->(%byte::nuevo_valor)
+			<*>del->(%byte::sumar::byte)
+		}
+
 		[rem]creo_vector_para_valor {<**>vector::nombre {<*>byte::nombre.valor} <**>nuevo vector}
 
 		<metodo> byte::nombre.asignar
@@ -293,14 +308,14 @@ programa
 		
 		<metodo> byte::nombre.decrementar
 		{
-			[rem]parametro_para_suma{<***>byte::sumar::byte {<*>byteMenosUno}}
-			[rem]lo_sumo{<*>byte::nombre.sumar}
+			[rem]parametro_para_suma	{<***>byte::sumar::byte {<*>byteMenosUno}}
+			[rem]lo_sumo					{<*>byte::nombre.sumar}
 		}
 
 		<metodo> byte::nombre.incrementar
 		{
-			[rem]parametro_para_suma{<***>byte::sumar::byte {<*>byteUno}}
-			[rem]lo_sumo{<*>byte::nombre.sumar}
+			[rem]parametro_para_suma	{<***>byte::sumar::byte {<*>byteUno}}
+			[rem]lo_sumo					{<*>byte::nombre.sumar}
 		}
 
 		<metodo> byte::nombre.sumar
@@ -310,25 +325,63 @@ programa
 			<***>suma::digitos{7}
 			[rem]sumo{<**>sumar}
 		}
+
+		<metodo> byte::nombre.esCero
+		{
+			<***>resultado{false}
+			<***>byte::temp{byte:esCero:}
+			[rem]astring{<*>byte::nombre.toString}
+			<***>sera cero?{<*>byte::temp %comoString}
+			<*>seracero?
+		}
 		
 		<metodo> byte::nombre.toString
 		{
 			[rem]concateno_bits	{<***>comoString{<*>byte::nombre.valor[7]}	<***>comoString{<*>byte::nombre.valor[6]%comoString }	<***>comoString{<*>byte::nombre.valor[5]%comoString } <***>comoString{<*>byte::nombre.valor[4]%comoString }	<***>comoString{<*>byte::nombre.valor[3]%comoString }	<***>comoString{<*>byte::nombre.valor[2]%comoString }	<***>comoString{<*>byte::nombre.valor[1]%comoString }	<***>comoString{<*>byte::nombre.valor[0]%comoString }	<***>mi_nombre{<*>byte::nombre=}}
 			<**>mi_nombre %comoString{}
 		}
-	
 	}
 	<cierra clase> byte
 	{
-		[rem]creo_byteMenosUno{<*>byte::nombre{%byteMenosUno} nuevo byte }
-		[rem]le_asigno_un_valor{<*>byte::nuevo_valor{<**>#1#1#1#1#1#1#1#1} %byteMenosUno.asignar}
+		[rem]es_cero				{byte:esCero:00000000{<**>resultado{true}}}
+		
+		[rem]creo_byteMenosUno	{<*>byte::nombre{%byteMenosUno} nuevo byte }
+		[rem]le_asigno_un_valor	{<*>byte::nuevo_valor{<**>#1#1#1#1#1#1#1#1} %byteMenosUno.asignar}
 
-		[rem]creo_byteUno{<*>byte::nombre{%byteUno} nuevo byte }
-		[rem]le_asigno_un_valor{<*>byte::nuevo_valor{<**>#0#0#0#0#0#0#0#1} %byteUno.asignar}
+		[rem]creo_byteUno			{<*>byte::nombre{%byteUno} nuevo byte }
+		[rem]le_asigno_un_valor	{<*>byte::nuevo_valor{<**>#0#0#0#0#0#0#0#1} %byteUno.asignar}
 	}
 
+	[rem]prueba multiplicacion
+	{
+		<*> mul.while.cuerpo
+		{
+			[rem]sumo_con_b3		 		{<**>byte::sumar::byte {<*>b3} <*>b2.sumar}
+			[rem]decremento				{<*>b1.decrementar}
+		}
+		
+		<*> mul.while.guarda
+		{	
+			<**>guarda_temp1	{<*>b1.esCero}
+			<**>guarda_temp2	{<*>resultado.not}
+			<**>mul.while.valorGuarda {<*>guarda_temp2}
+		}
+		
+		[rem]creo_byte1				{<*>byte::nombre{%b1} nuevo byte }
+		[rem]le_asigno_un_valor		{<*>byte::nuevo_valor{<**>#0#0#0#0#0#1#1#0} %b1.asignar}
+		[rem]creo_byte2				{<*>byte::nombre{%b2} nuevo byte }
+		[rem]le_asigno_un_valor		{<*>byte::nuevo_valor{<**>#0#0#0#0#0#1#0#0} %b2.asignar}
+		[rem]creo_byte3				{<*>byte::nombre{%b3} nuevo byte }
+		[rem]le_asigno_un_valor		{<*>byte::nuevo_valor{<**>#0#0#0#0#0#1#0#0} %b3.asignar}
 
-
+		<*>while::nombre 				{<*>mul.while}
+		[rem]creo_while				{<*>nuevo while}
+					
+		[rem]ejecuta 					{%mul.while.ejecutar}
+		
+		[rem]valor						{%b2.toString }
+		
+	}
 
 	[rem]prueba_de_byte
 	{
@@ -345,6 +398,12 @@ programa
 		[rem]parametro_para_suma	{<*>byte::sumar::byte {<*>b2}}
 		[rem]lo_sumo_con_b2			{%b1.sumar}
 		[rem]valor						{%b1.toString }
+	
+		[rem]valor						{%byteUno.toString }
+		[rem]nose{%byteUno.decrementar}
+		[rem]valor						{%byteUno.toString }
+		
+		[rem]me fijo si es cero 	{%byteUno.esCero}
 	}
 
 
