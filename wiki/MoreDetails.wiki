@@ -20,7 +20,7 @@ p1
 }
 result
 {
- p2{v2}
+ v2{v2}
 }
 </code>
 
