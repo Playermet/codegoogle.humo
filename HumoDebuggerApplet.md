@@ -1,0 +1,1 @@
+&lt;wiki:gadget url="http://humo.googlecode.com/svn/trunk/humo/demo/humo-demo.xml"  width="600" height="500"/&gt;
